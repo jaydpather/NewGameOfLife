@@ -22,7 +22,7 @@ export default class extends Component {
     const canvas = this.refs.canvas
     const ctx = canvas.getContext("2d")
     
-    var predators = 25, plants = 100, herbivores = 50;
+    var predators = 60, plants = 200, herbivores = 125; //this one almost goes extinct twice, then recovers and becomes mostly herbivores!
 
     const x = 100;
     const y = 100;
@@ -30,7 +30,7 @@ export default class extends Component {
     let setPixelFn = (c, x, y, r, g, b) => this.setPixel(c, x, y, r, g, b)
 
     setInterval(function (){
-      let starvationPct = 0.5;
+      let starvationPct = 1.0;
 
       //herbivores eat or die:
       plants -= herbivores;
@@ -43,10 +43,20 @@ export default class extends Component {
       herbivores -= predators;
       if(herbivores < 0){
         predators += starvationPct * herbivores //the number of negative herbivores is the number of predators that died of starvation
+        herbivores = 0;
       }
 
+      //die of random events (wildfire, struck by lightning):
+      // let randomSurviveBasePct = 80;
+      // let randomSurvivePct = (randomSurviveBasePct + 10*Math.random()) / 100.0;
+      // plants *= randomSurvivePct;
+      // randomSurvivePct = (randomSurviveBasePct + 10*Math.random()) / 100.0;
+      // herbivores *= randomSurvivePct;
+      // randomSurvivePct = (randomSurviveBasePct + 10*Math.random()) / 100.0;
+      // predators *= randomSurvivePct;
+
       //everything reproduces:
-      let reproductionRate = 1.1;
+      let reproductionRate = 2.0;
       plants *= reproductionRate;
       if(plants > 255)
         plants = 255
@@ -66,7 +76,7 @@ export default class extends Component {
         }
       }
     },
-    1000);
+    300);
     
   }
 
