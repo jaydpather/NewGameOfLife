@@ -25,7 +25,7 @@
   "homepage": "https://github.com/jaydpather/NewGameOfLife/#readme",
   "dependencies": {
     "amqplib": "^0.5.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "net": "^1.0.2",
     "next": "^9.1.6",
     "react": "^16.12.0",
